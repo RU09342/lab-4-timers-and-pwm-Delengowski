@@ -1,7 +1,7 @@
 # Lab 4 Software PWM
 ## Goal
 To adjust the duty cycle of an LED through use of software techniques (cannot use pin selects to multiplex timers to output). 
-##Code
+## Code
 The most one needs to know for PWM is the equation for duty cycle, 
 
 	dutycycle = time on/time off
