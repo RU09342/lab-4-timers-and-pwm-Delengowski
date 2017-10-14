@@ -1,3 +1,36 @@
+# Lab 4 Software PWM
+## Goal
+To adjust the duty cycle of an LED through use of software techniques (cannot use pin selects to multiplex timers to output). 
+##Code
+The most one needs to know for PWM is the equation for duty cycle, 
+
+	dutycycle = time on/time off
+
+This lab utilized polling and direct access to the timer register TAxR, to represent the time on. We then use a variale Duty _ Cycle to represent the time off. When TAxR is less than the duty cycle value, and Duty _ Cycle does not equal zero, turn the LED on. When TA0R is greater than the Duty _ Cycle, turn the LED off. The duty cycle can then be adjusted using a button, which increases it by 10% every time button is pressed (button debouncing was used to guarantee this), a second LED will turn on when the button is pressed to show the duty cycle being incremented. The max value of the Timer (CCR0) is 1000 and that is the max duty cycle. An example code snippet from FR6989 is shown below.  
+
+    for(;;)
+    {
+
+        if((TA0R <= Duty_Cycle) && (Duty_Cycle != 0))
+        {
+            LED1_ON;
+        }
+        else if(TA0R > Duty_Cycle)
+        {
+            LED1_OFF;
+        }
+
+        if(BUTTON1PRESSED)
+        {
+            LED2_ON;
+        }
+        else {LED2_OFF}
+
+    }
+
+
+
+
 # Software PWM
 Most microprocessors will have a Timer module, but depending on the device, some may not come with pre-built PWM modules. Instead, you may have to utilize software techniques to synthesize PWM on your own.
 
